@@ -13,6 +13,7 @@ import { format, addDays } from 'date-fns'
  
   increment = 0;
   listTodo: TodoTypes[] = [];
+  listConcluida: TodoTypes[] = [];
 
   addControl = new FormControl();
 
@@ -21,29 +22,38 @@ import { format, addDays } from 'date-fns'
   ngOnInit(): void {
     this.listTodo = JSON.parse(sessionStorage.getItem('@todo')) || [];
     this.increment = this.listTodo.length;
+    this.listConcluida = this.listTodo.filter((f) => f.status == 'concluida')
+    .slice(this.listTodo.length-3)
+    .sort((a: TodoTypes, b: TodoTypes) => (a.date > b.date) ? 1 : -1);
   }
 
   addTask(){
     this.increment++;
+    const today = this.listTodo.length > 0 ? this.listTodo[0].date : new Date();
     this.listTodo.push({
       id: this.increment,
       title: this.addControl.value,
       status: 'pendente',
-      date: format(addDays(new Date(),1), 'MM/dd/yyyy')
+      date: addDays(new Date(today),1)
     });
-    this.listTodo.sort((a: TodoTypes, b: TodoTypes) => (a.date > b.date) ? 1 : -1);
-    sessionStorage.setItem('@todo', JSON.stringify(this.listTodo))
+    this.listTodo.sort((a: TodoTypes, b: TodoTypes) => (a.date > b.date) ? 1 : 1);
+    sessionStorage.setItem('@todo', JSON.stringify(this.listTodo));
+    this.addControl.setValue('');
   }
 
   onTaskDone(item:TodoTypes){
     const index = this.listTodo.findIndex((f) => f.id === item.id);
       this.listTodo.map((items, i) => {
         if(i === index){
-          items.status = 'concluido'
+          items.status = 'concluida'
         }
         return items;
       });
+     
+      this.listConcluida = this.listTodo.filter((f) => f.status == 'concluida')
+      .slice(this.listTodo.length-3)
+      .sort((a: TodoTypes, b: TodoTypes) => (a.date > b.date) ? 1 : -1);
       sessionStorage.setItem('@todo', JSON.stringify(this.listTodo))
    }
-   
+  
  }

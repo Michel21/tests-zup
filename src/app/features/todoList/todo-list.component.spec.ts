@@ -49,9 +49,9 @@ describe('TodoListComponent component', () => {
     expect(component.listTodo).toEqual(mocklistTodo)
 
   });
-
+  
   it(`Should testing method onTaskDone`, () => {
-    
+
     component.onTaskDone(mocklistTodo[0]);
 
     expect(component.onTaskDone).toHaveBeenCalledWith(mocklistTodo[0])

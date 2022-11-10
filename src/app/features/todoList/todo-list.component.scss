@@ -38,8 +38,15 @@ $button-primary: #003152;
   &__wrap{
     margin-top: 40px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    flex-direction: row;
     grid-gap: 10px;
 
+    &__pedding{
+
+    }
+    &__done{
+      margin: 10px;
+    }
   }
 }
