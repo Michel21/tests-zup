@@ -1,0 +1,45 @@
+$button-pressed-background: #18cf65;
+$button-primary: #003152;
+.btn-styles{
+  border: 1px solid #aeb6e6;
+  padding: 0.5rem 0.75rem !important;
+  margin: 0;
+  color: black;
+  border-color: #fff;
+  border-radius: 5px;
+
+  background-color: $button-pressed-background;
+  border-color: $button-pressed-background;
+  box-shadow: inset 0 0 5px 0 rgba(0,0,0,.2);
+}
+
+.listContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100% - 40px);
+  margin: 0 20px;
+
+  input {
+    font-size: 16px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+
+  &__btn-add{
+   @extend .btn-styles;
+   color: #fff;
+  }
+
+  &__wrap{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10px;
+
+  }
+}

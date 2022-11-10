@@ -1,0 +1,20 @@
+<section class="listContainer">
+  <h1>Todo List</h1>
+
+  <div class="listContainer__listAdd">
+    <input type="text" [formControl]="addControl" />
+    <button class="listContainer__btn-add" (click)="addTask()">Add task</button>
+  </div>
+  
+  <div class="listContainer__wrap">
+    <ng-container *ngFor="let item of listTodo">
+      <app-card 
+       *ngIf="item.status === 'pendente'"
+       [title]="item.title" 
+       [status]="item.status"
+       [date]="item.date"
+       (onClick)="onTaskDone(item)"
+      ></app-card>
+    </ng-container>
+  </div>
+</section>
