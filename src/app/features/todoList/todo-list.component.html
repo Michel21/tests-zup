@@ -3,21 +3,23 @@
 
   <div class="listContainer__listAdd">
     <input type="text" [formControl]="addControl" />
-    <button class="listContainer__btn-add" (click)="addTask()">Add task</button>
+    <button 
+    class="listContainer__btn-add" 
+    [disabled]="!addControl.value"
+    (click)="addTask()">Add task</button>
   </div>
   
   <div class="listContainer__wrap">
     <div class="listContainer__wrap__pedding">
       <h2>Tarefas Pendentes</h2>
       <ng-container *ngFor="let item of listTodo">
-        <div *ngIf="item.status === 'pendente'">
           <app-card 
+           *ngIf="item.status === 'pendente'"
            [title]="item.title" 
            [status]="item.status"
            [date]="item.date"
            (onClick)="onTaskDone(item)"
           ></app-card>
-        </div>
       </ng-container>
     </div>
     <div class="listContainer__wrap__done">
