@@ -6,7 +6,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TodoListComponent } from './todo-list.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 
 let mocklistTodo = [
@@ -25,7 +24,6 @@ describe('TodoListComponent component', () => {
       declarations: [TodoListComponent],
       imports: [
         ReactiveFormsModule,
-        SharedModule,
         BrowserAnimationsModule,
         RouterTestingModule.withRoutes([])
       ],
