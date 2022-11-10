@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { TodoTypes } from "./Itodo-list";
-import { format, addDays } from 'date-fns'
+import { addDays } from 'date-fns'
 
 @Component({
   selector: 'app-todo-list',
@@ -20,16 +20,16 @@ import { format, addDays } from 'date-fns'
   constructor(){}
 
   ngOnInit(): void {
-    this.listTodo = JSON.parse(sessionStorage.getItem('@todo')) || [];
+    this.listTodo = JSON.parse(sessionStorage.getItem('@list')) || [];
     this.increment = this.listTodo.length;
     this.listConcluida = this.listTodo.filter((f) => f.status == 'concluida')
     .slice(this.listTodo.length-3)
-    .sort((a: TodoTypes, b: TodoTypes) => (a.date > b.date) ? 1 : -1);
+    .sort((a: TodoTypes, b: TodoTypes) => (a.date < b.date) ? 1 : -1);
   }
 
   addTask(){
     this.increment++;
-    const today = this.listTodo.length > 0 ? this.listTodo[0].date : new Date();
+    const today = this.listTodo.length > 0 ? this.listTodo[this.listTodo.length-1].date : new Date();
     this.listTodo.push({
       id: this.increment,
       title: this.addControl.value,
@@ -37,7 +37,7 @@ import { format, addDays } from 'date-fns'
       date: addDays(new Date(today),1)
     });
     this.listTodo.sort((a: TodoTypes, b: TodoTypes) => (a.date > b.date) ? 1 : 1);
-    sessionStorage.setItem('@todo', JSON.stringify(this.listTodo));
+    sessionStorage.setItem('@list', JSON.stringify(this.listTodo));
     this.addControl.setValue('');
   }
 
@@ -52,8 +52,8 @@ import { format, addDays } from 'date-fns'
      
       this.listConcluida = this.listTodo.filter((f) => f.status == 'concluida')
       .slice(this.listTodo.length-3)
-      .sort((a: TodoTypes, b: TodoTypes) => (a.date > b.date) ? 1 : -1);
-      sessionStorage.setItem('@todo', JSON.stringify(this.listTodo))
+      .sort((a: TodoTypes, b: TodoTypes) => (a.date < b.date) ? 1 : -1);
+      sessionStorage.setItem('@list', JSON.stringify(this.listTodo))
    }
   
  }

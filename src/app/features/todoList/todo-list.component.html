@@ -24,7 +24,6 @@
       <h2>Tarefas Concluidas</h2>
       <ng-container *ngFor="let list of listConcluida; let i = index">
           <app-card 
-           *ngIf="i > listConcluida.length-4"
            [title]="list.title" 
            [status]="list.status"
            [date]="list.date"
