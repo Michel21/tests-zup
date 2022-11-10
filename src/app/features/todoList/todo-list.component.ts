@@ -49,10 +49,6 @@ import { addDays } from 'date-fns'
         }
         return items;
       });
-     
-      this.listConcluida = this.listTodo.filter((f) => f.status == 'concluida')
-      .slice(this.listTodo.length-3)
-      .sort((a: TodoTypes, b: TodoTypes) => (a.date < b.date) ? 1 : -1);
       sessionStorage.setItem('@list', JSON.stringify(this.listTodo))
    }
   

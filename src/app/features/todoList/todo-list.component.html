@@ -3,7 +3,11 @@
 
   <div class="listContainer__listAdd">
     <input type="text" [formControl]="addControl" />
-    <button class="listContainer__btn-add" (click)="addTask()">Add task</button>
+    <button 
+    class="listContainer__btn-add" 
+    (click)="addTask()"
+    [disabled]="!addControl.value"
+    >Add task</button>
   </div>
   
   <div class="listContainer__wrap">
