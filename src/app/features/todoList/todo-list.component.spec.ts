@@ -9,9 +9,13 @@ import { TodoListComponent } from './todo-list.component';
 
 
 let mocklistTodo = [
-{id: 3, title: "task1", status: "pendente", date: "11/10/2022"},
-{id: 1, title: "task1", status: "pendente", date: "11/10/2022"},
-{id: 2, title: "task1", status: "concluido", date: "11/10/2022"}
+{id: 3, title: "TASK3", status: "pendente", date: "2022-11-12T01:41:45.707Z"},
+{id: 1, title: "TASK2", status: "pendente", date: "2022-11-13T01:41:45.707Z"},
+{id: 2, title: "TASK1", status: "pendente", date: "2022-11-14T01:41:45.707Z"},
+{id: 4, title: "TASK4", status: "concluida", date: "2022-11-15T01:41:45.707Z"},
+{id: 5, title: "TASK5", status: "concluida", date: "2022-11-16T01:41:45.707Z"},
+{id: 6, title: "TASK6", status: "concluida", date: "2022-11-17T01:41:45.707Z"},
+{id: 7, title: "TASK7", status: "concluida", date: "2022-11-18T01:41:45.707Z"}
 ]
 
 
@@ -40,19 +44,28 @@ describe('TodoListComponent component', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`Should testing method addTask()`, () => {
-   
-    component.addTask();
+  it(`Should testing method ngOnInit()`, () => {
+    component.ngOnInit();
+    component.listTodo = mocklistTodo;
+    expect(component.listTodo.length).toBeGreaterThanOrEqual(1);
+    fixture.detectChanges();
 
-    // expect(component.listTodo[0]).toEqual(mocklistTodo[0])
+  });
+
+  it(`Should testing method addTask()`, () => {
+    jest.spyOn(component, 'addTask');
+    component.addTask();
+    expect(component.listTodo.length).toBeGreaterThanOrEqual(1);
+    expect(component.listTodo[0].status).toContain('pendente');
 
   });
   
   it(`Should testing method onTaskDone`, () => {
-    
+    jest.spyOn(component, 'onTaskDone');
+    component.listTodo = mocklistTodo;
     component.onTaskDone(mocklistTodo[0]);
-
-    // expect(component.onTaskDone[0]).toHaveBeenCalledWith(mocklistTodo[0])
+    expect(component.listTodo[0].status).toContain('concluida');
+    expect(component.listConcluida.length).toBeGreaterThanOrEqual(1);
   
   });
 

@@ -19,7 +19,7 @@ import { addDays } from 'date-fns'
 
   constructor(){}
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.listTodo = JSON.parse(sessionStorage.getItem('@list')) || [];
     this.increment = this.listTodo.length;
     const object = this.listTodo.filter((f) => f.status == 'concluida');
@@ -37,7 +37,7 @@ import { addDays } from 'date-fns'
       status: 'pendente',
       date: addDays(new Date(today),1)
     });
-    this.listTodo.sort((a: TodoTypes, b: TodoTypes) => (a.date > b.date) ? 1 : 1);
+    this.listTodo.sort((a: TodoTypes, b: TodoTypes) => (a.date > b.date) ? 1 : -1);
     sessionStorage.setItem('@list', JSON.stringify(this.listTodo));
     this.addControl.setValue('');
   }

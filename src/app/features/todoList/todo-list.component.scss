@@ -38,9 +38,9 @@ $button-primary: #003152;
   &__wrap{
     margin-top: 40px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
-    grid-gap: 10px;
+    grid-gap: 60px;
 
     &__pedding{
       
