@@ -33,6 +33,10 @@ $button-primary: #003152;
   &__btn-add{
    @extend .btn-styles;
    color: #fff;
+   &:disabled{
+    background: #ccc;
+    border: none
+   }
   }
 
   &__wrap{
