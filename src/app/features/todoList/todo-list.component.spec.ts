@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TodoListComponent } from './todo-list.component';
+import {SortPipe} from './sorte.pipe'
 
 
 let mocklistTodo = [
@@ -25,7 +26,7 @@ describe('TodoListComponent component', () => {
   
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      declarations: [TodoListComponent],
+      declarations: [TodoListComponent, SortPipe],
       imports: [
         ReactiveFormsModule,
         BrowserAnimationsModule,

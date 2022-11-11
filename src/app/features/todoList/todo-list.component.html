@@ -25,7 +25,7 @@
     </div>
     <div class="listContainer__wrap__done">
       <h2>Tarefas Concluidas</h2>
-      <ng-container *ngFor="let list of listConcluida; let i = index">
+      <ng-container *ngFor="let list of listConcluida | sort; let i = index">
           <app-card 
            [title]="list.title" 
            [status]="list.status"

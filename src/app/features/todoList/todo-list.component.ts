@@ -24,8 +24,6 @@ import { addDays } from 'date-fns'
     this.increment = this.listTodo.length;
     const object = this.listTodo.filter((f) => f.status == 'concluida');
     this.listConcluida = object.slice(object.length >= 3 ? object.length-3 : object.length-2)
-    .sort((a: TodoTypes, b: TodoTypes) => (a.date < b.date) ? 1 : -1); 
-   
   }
 
   addTask(){
@@ -37,7 +35,6 @@ import { addDays } from 'date-fns'
       status: 'pendente',
       date: addDays(new Date(today),1)
     });
-    this.listTodo.sort((a: TodoTypes, b: TodoTypes) => (a.date > b.date) ? 1 : -1);
     sessionStorage.setItem('@list', JSON.stringify(this.listTodo));
     this.addControl.setValue('');
   }
@@ -54,7 +51,6 @@ import { addDays } from 'date-fns'
       sessionStorage.setItem('@list', JSON.stringify(this.listTodo))
       const object = this.listTodo.filter((f) => f.status == 'concluida')
       this.listConcluida = object.slice(object.length >= 3 ? object.length-3 : object.length-2)
-      .sort((a: TodoTypes, b: TodoTypes) => (a.date < b.date) ? 1 : -1); 
    }
   
  }
